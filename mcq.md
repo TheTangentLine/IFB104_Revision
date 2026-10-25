@@ -484,32 +484,6 @@ What happens when the last line runs?
 
 ### Question 16
 
-Charlie runs a small online bakery where every cupcake costs $2, and writes a GUI to calculate the cost of an order. A customer types `4` into `quantity_input` (a `QLineEdit`) and clicks the button connected to this function:
-
-```python
-def show_total():
-    quantity = quantity_input.text()
-    price_per_item = 2
-    total = quantity * price_per_item
-    result_label.setText('Total: ' + str(total))
-```
-
-What does `result_label` display?
-
-**A.** `Total: 8`
-
-**B.** Nothing; a `TypeError` is raised
-
-**C.** `Total: 4`
-
-**D.** Nothing; a `ValueError` is raised
-
-**E.** `Total: 44`
-
----
-
-### Question 17
-
 Priya is writing a script to pick out QUT student IDs from a long file of emails. A QUT student ID is the lowercase letter `n` followed by exactly eight digits, for example `n12345678`, and must appear as a complete token, not embedded in other characters.
 
 Which regex pattern should Priya use?
@@ -526,7 +500,7 @@ Which regex pattern should Priya use?
 
 ---
 
-### Question 18
+### Question 17
 
 Minh is given a note describing where a meeting will be held, and wants to pull out every number in it. He writes:
 
@@ -550,7 +524,7 @@ What is printed when this code runs?
 
 ---
 
-### Question 19 (multiple answer)
+### Question 18 (multiple answer)
 
 Sofia manages a warehouse where every product code must be exactly two uppercase letters followed by exactly three digits. She checks each code that staff type in using `re.fullmatch(pattern, text)` with the pattern below:
 
@@ -574,7 +548,7 @@ For which of the following values of `text` does `re.fullmatch` return a match? 
 
 ---
 
-### Question 20\* (multiple answer)
+### Question 19\* (multiple answer)
 
 Alice's lecturer sets the class a challenge: print the numbers 1 to 5 in ascending order, one per line, **without using any loop**. Alice and her classmates submit the five programs below, all using a recursive function. Which of them meet the challenge? Select all that apply.
 
@@ -661,7 +635,7 @@ count_up(1)
 
 ---
 
-### Question 21
+### Question 20
 
 Before submitting his assignment, Bob's tutor asks him to tidy up his code so that it follows the IFB104 Code Presentation Guide. His classmates each suggest a different way of converting minutes into seconds. Which suggestion best follows the guide?
 
@@ -723,7 +697,7 @@ totSecs = mins * 60 # calc secs
 
 ---
 
-### Question 22\*
+### Question 21\*
 
 Charlie is studying the Fibonacci sequence `0, 1, 1, 2, 3, 5, 8, 13, ...`, in which each term is the sum of the two terms before it. He stores each term in a list so that every new term can be built from the two before it. His function is meant to return term `n`, counting from 0, so `fibonacci(6)` should return `8`:
 
@@ -761,14 +735,13 @@ What happens when this code runs, and what is the best fix?
 
 | Q | Answer | Q | Answer | Q | Answer |
 |:-:|:------:|:-:|:------:|:-:|:------:|
-| 1 | C | 9 | D | 17 | C |
-| 2 | B, D | 10 | D | 18 | D |
-| 3 | C | 11 | B | 19 | A, D |
-| 4 | D | 12 | C | 20 | A, D |
-| 5 | B | 13 | D | 21 | B |
-| 6 | C | 14 | A | 22 | C |
-| 7 | E | 15 | B |  |  |
-| 8 | A | 16 | E |  |  |
+| 1 | C | 8 | A | 15 | B |
+| 2 | B, D | 9 | D | 16 | C |
+| 3 | C | 10 | D | 17 | D |
+| 4 | D | 11 | B | 18 | A, D |
+| 5 | B | 12 | C | 19 | A, D |
+| 6 | C | 13 | D | 20 | B |
+| 7 | E | 14 | A | 21 | C |
 
 ---
 
@@ -957,18 +930,7 @@ button.clicked.connect(show_message)   # correct: pass the function itself, no (
 > [!WARNING]
 > This is one of the most common Qt mistakes. If the slot needs arguments, use a `lambda`: `button.clicked.connect(lambda: show_message('Hi'))`.
 
-### Q16: **E** `Total: 44`
-
-`QLineEdit.text()` **always returns a string**. `'4' * 2` is **string repetition**, giving `'44'`. No error is raised, so the bug is silent. Convert first:
-
-```python
-quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad input
-```
-
-> [!NOTE]
-> If the price were `2.5`, `'4' * 2.5` *would* raise a `TypeError`. The bug is only silent because `2` is an integer.
-
-### Q17: **C** `\bn\d{8}\b`
+### Q16: **C** `\bn\d{8}\b`
 
 - **A** `n\d+`: any number of digits, so it accepts `n1`, and it also matches inside words.
 - **B** is missing the closing `\b`, so `n123456789` matches its first 8 digits.
@@ -976,11 +938,11 @@ quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad 
 - **D** has only 7 digits.
 - **E** uses uppercase `N`. Regex is case-sensitive by default.
 
-### Q18: **D** `['12', '3', '2026']`
+### Q17: **D** `['12', '3', '2026']`
 
 `findall` returns a **list of strings** (never ints, so A is wrong). `\d+` is greedy and takes the **longest run** of digits each time, so `12` stays together (B would be `\d` without the `+`).
 
-### Q19: **A, D**
+### Q18: **A, D**
 
 `fullmatch` requires the **whole string** to match: exactly 2 uppercase letters, then exactly 3 digits.
 
@@ -993,7 +955,7 @@ quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad 
 > [!TIP]
 > Use `fullmatch` (or `^...$`) to **validate** input, and `search` / `findall` to **find** things inside longer text.
 
-### Q20: **A, D**
+### Q19: **A, D**
 
 - **A** (correct) prints *before* recursing: 1, 2, 3, 4, 5. The base case stops at 6.
 - **B** (wrong) prints *after* recursing, so the output **unwinds backwards**: 5, 4, 3, 2, 1.
@@ -1014,7 +976,7 @@ flowchart LR
 > [!IMPORTANT]
 > Every recursive function needs: (1) a **base case** that stops, and (2) a recursive call that **moves toward** it.
 
-### Q21: **B**
+### Q20: **B**
 
 B uses a **named constant** instead of a magic number, has meaningful names and has spaces around operators.
 
@@ -1023,7 +985,7 @@ B uses a **named constant** instead of a magic number, has meaningful names and 
 - **D**: the name isn't a descriptive verb, the parameter name is a single letter, `60` is a magic number, and it's crammed onto one line.
 - **E**: abbreviations (`totSecs`, `calc`), which the guide says to avoid.
 
-### Q22: **C**
+### Q21: **C**
 
 `fibo = [0] * 6` has indices `0..5`, but the loop goes up to `index = 6` (and the function returns `fibo[6]`), so `fibo[6] = ...` raises `IndexError`. To store terms 0 to `n` you need **`n + 1`** slots:
 
