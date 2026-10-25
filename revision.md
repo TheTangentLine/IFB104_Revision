@@ -117,149 +117,77 @@ flowchart LR
 
 ## Part 2: PySide6/Qt Components
 
-### 2.1 The big picture
-
-Every PySide6 program has the same skeleton: **one** `QApplication`, a top-level **window**, a **layout** that arranges **widgets**, and **signals** connected to **slots** (your functions).
+A Qt window is built from **widgets**: the boxes, buttons and labels the user sees and interacts with. Pick the widget that matches what the user needs to do.
 
 ```mermaid
 flowchart TD
-    App["QApplication<br/>(one per program, runs the event loop)"] --> Win["Window: QWidget / QMainWindow"]
-    Win --> Layout["Layout: QVBoxLayout / QHBoxLayout / QGridLayout"]
-    Layout --> W1["QLabel"]
-    Layout --> W2["QLineEdit"]
-    Layout --> Sub["Nested layout: QHBoxLayout"]
-    Sub --> W3["QComboBox"]
-    Sub --> W4["QPushButton"]
+    W["Qt widgets"] --> Show["Show something"]
+    W --> Type["Type something"]
+    W --> Choose["Choose something"]
+    W --> Act["Do something"]
+    Show --> L["QLabel"]
+    Type --> LE["QLineEdit<br/>one line"]
+    Type --> TE["QTextEdit<br/>many lines"]
+    Choose --> CB["QCheckBox<br/>on / off"]
+    Choose --> RB["QRadioButton<br/>one of a few, all visible"]
+    Choose --> CO["QComboBox<br/>one from a drop-down"]
+    Choose --> LW["QListWidget<br/>from a visible list"]
+    Act --> PB["QPushButton"]
 ```
+
+### QLabel: show text
+
+Displays text that the user can read but not edit, such as a title, an instruction or a result.
 
 ```python
-import sys
-from PySide6.QtWidgets import (QApplication, QWidget, QVBoxLayout,
-                               QLabel, QLineEdit, QPushButton)
-
-def greet_user():
-    name = name_input.text()
-    greeting_label.setText('Hello, ' + name + '!')
-
-app = QApplication(sys.argv)                # 1. the application
-
-window = QWidget()                          # 2. the window
-window.setWindowTitle('Greeter')
-
-name_input = QLineEdit()                    # 3. the widgets
-greet_button = QPushButton('Greet')
-greeting_label = QLabel('')
-
-layout = QVBoxLayout()                      # 4. the layout
-layout.addWidget(name_input)
-layout.addWidget(greet_button)
-layout.addWidget(greeting_label)
-window.setLayout(layout)
-
-greet_button.clicked.connect(greet_user)    # 5. signal -> slot (no brackets!)
-
-window.show()                               # 6. show it
-sys.exit(app.exec())                        # 7. start the event loop
+result_label.setText('Total: $8')
 ```
 
-### 2.2 Event loop: how a click becomes code
+### QLineEdit: a one-line text box
 
-```mermaid
-sequenceDiagram
-    actor User
-    participant Loop as QApplication event loop
-    participant Button as QPushButton
-    participant Slot as greet_user()
-    participant Label as QLabel
-
-    User->>Button: clicks
-    Button->>Loop: emits clicked signal
-    Loop->>Slot: calls the connected function
-    Slot->>Slot: name_input.text() returns str
-    Slot->>Label: setText('Hello, ...')
-    Label-->>User: window repaints
-    Note over Loop: waits for the next event...
-```
-
-> [!IMPORTANT]
-> Nothing happens until `app.exec()` runs. After that your code only runs **in response to signals**.
-
-### 2.3 Widget cheat sheet
-
-```mermaid
-mindmap
-  root((Widgets))
-    Display
-      QLabel
-    Text input
-      QLineEdit: one line
-      QTextEdit: many lines
-      QSpinBox: whole number
-    Choose
-      QCheckBox: on/off, independent
-      QRadioButton: one of a visible group
-      QComboBox: one from a drop-down
-      QListWidget: from a visible list
-    Action
-      QPushButton
-```
-
-| Widget | Use for | Read value | Set value | Key signal |
-|---|---|---|---|---|
-| `QLabel` | showing text / images | `.text()` | `.setText(str)` | n/a |
-| `QLineEdit` | one line of input | `.text()` returns **str** | `.setText(str)`, `.clear()` | `textChanged`, `returnPressed` |
-| `QTextEdit` | multi-line input | `.toPlainText()` | `.setPlainText(str)` | `textChanged` |
-| `QPushButton` | triggering an action | n/a | `.setText(str)` | **`clicked`** |
-| `QCheckBox` | independent yes/no | `.isChecked()` returns **bool** | `.setChecked(bool)` | `stateChanged`, `toggled` |
-| `QRadioButton` | one of several, all visible | `.isChecked()` | `.setChecked(bool)` | `toggled` |
-| `QComboBox` | one of several, drop-down | `.currentText()`, `.currentIndex()` | `.addItem(str)`, `.addItems(list)` | `currentTextChanged`, `currentIndexChanged` |
-| `QListWidget` | pick from visible list | `.currentItem().text()` | `.addItem(str)` | `itemClicked`, `currentRowChanged` |
-| `QSpinBox` | whole number in a range | `.value()` returns **int** | `.setValue(int)`, `.setRange(lo, hi)` | `valueChanged` |
-
-### 2.4 Layouts
-
-```mermaid
-flowchart LR
-    subgraph V["QVBoxLayout (top to bottom)"]
-        direction TB
-        v1[Widget 1] --- v2[Widget 2] --- v3[Widget 3]
-    end
-    subgraph H["QHBoxLayout (left to right)"]
-        direction LR
-        h1[Widget 1] --- h2[Widget 2] --- h3[Widget 3]
-    end
-    subgraph G["QGridLayout (row, column)"]
-        direction TB
-        g00["(0,0)"] --- g01["(0,1)"]
-        g10["(1,0)"] --- g11["(1,1)"]
-    end
-```
-
-| Method | Purpose |
-|---|---|
-| `layout.addWidget(widget)` | add a widget to a box layout |
-| `grid.addWidget(widget, row, column)` | place a widget in a grid cell |
-| `layout.addLayout(other_layout)` | **nest** one layout inside another |
-| `window.setLayout(layout)` | attach the top-level layout to the window |
-
-### 2.5 Qt traps that show up in exams
-
-| Trap | Fix | Why |
-|---|---|---|
-| `button.clicked.connect(do_it())` | `button.clicked.connect(do_it)` | brackets **call** it now and pass `None` |
-| `total = box.text() * 2` | `total = int(box.text()) * 2` | `.text()` is a **str**: `'4' * 2` is `'44'` |
-| `label.setText(42)` | `label.setText(str(42))` | `setText` needs a **str** (`TypeError` otherwise) |
-| `int(box.text())` with blank or `'abc'` | wrap in `try` / `except ValueError` | defensive coding |
-| `checkbox.isChecked` | `checkbox.isChecked()` | without `()` it's the method itself, which is always truthy |
-| plans as `QCheckBox` | `QRadioButton` | checkboxes allow **many**; radios allow **one** |
-| forgetting `window.setLayout(layout)` | add it | widgets won't be arranged in the window |
-| forgetting `app.exec()` | add it | the window flashes and the program ends |
+The box you type a name, a number or a **search term** into. `.text()` always returns a **string**, so convert it with `int()` or `float()` before doing maths.
 
 ```python
-def show_total():
-    try:
-        quantity = int(quantity_input.text())
-        result_label.setText('Total: $' + str(quantity * PRICE_PER_ITEM))
-    except ValueError:
-        result_label.setText('Please enter a whole number')
+search_term = search_input.text()
 ```
+
+### QTextEdit: a multi-line text box
+
+Like `QLineEdit`, but for longer text such as comments or a message. Read it with `.toPlainText()`.
+
+### QCheckBox: an on/off option
+
+A tick box for a yes/no choice, such as "Subscribe to newsletter". Each checkbox is **independent**, so the user can tick as many as they like.
+
+```python
+if newsletter_checkbox.isChecked():
+    ...
+```
+
+### QRadioButton: pick exactly one
+
+A small group of round buttons where choosing one **unticks the others**, such as Basic / Pro / Team. Use it when there are only a few options and you want them all **visible at once**.
+
+### QComboBox: a drop-down list
+
+Picks **one** option from a list that stays hidden until the user opens it, such as choosing a suburb. Good when there are many options and not much space.
+
+```python
+suburb = suburb_combo.currentText()
+```
+
+### QListWidget: a visible list
+
+Shows the whole list on screen, such as search results, and lets the user click an item.
+
+### QPushButton: do something
+
+A button the user clicks to make something happen. Connect its `clicked` signal to your function, **without brackets**:
+
+```python
+search_button.clicked.connect(run_search)
+```
+
+> [!TIP]
+> - **Checkbox or radio button?** Checkboxes allow **many** choices; radio buttons allow **one**.
+> - **Radio button or combo box?** Both pick one option. Radio buttons show every option, while a combo box hides them in a drop-down.
