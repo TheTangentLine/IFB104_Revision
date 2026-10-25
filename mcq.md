@@ -226,6 +226,33 @@ What is the result of running this code?
 
 ### Question 9
 
+Priya is organising a pizza night for her study group. There are 19 slices to share between 5 friends, and she wants to know how many whole slices each friend gets and how many are left over. Out of curiosity, she also tries the same operator with a negative number:
+
+```python
+slices = 19
+friends = 5
+
+print(slices // friends)
+print(slices % friends)
+print(-17 // 5)
+```
+
+What is printed when this code runs?
+
+**A.** `3`, `4` and `-3`
+
+**B.** `4`, `4` and `-3`
+
+**C.** `3.8`, `4` and `-3.4`
+
+**D.** `3`, `4` and `-4`
+
+**E.** `4`, `1` and `-4`
+
+---
+
+### Question 10
+
 Charlie is marking a first-year student's work and finds four lines of code that each crash the program. He runs each line on its own to see which exception it raises:
 
 ```python
@@ -249,7 +276,7 @@ Which exception does each line raise, in order from Line 1 to Line 4?
 
 ---
 
-### Question 10
+### Question 11
 
 Priya is a tutor who keeps her class's results in a list of lists, just like the data in Assignment 1. A student passes only if they score at least 50 in both the exam and the assignment. She writes the following code to list everyone who passed:
 
@@ -282,7 +309,7 @@ What is printed when this code runs?
 
 ---
 
-### Question 11
+### Question 12
 
 Minh writes a function to add up the prices in a shopping cart, but makes a small typing mistake on the last line of the function without noticing. He then runs his program:
 
@@ -312,7 +339,7 @@ What happens when this program runs?
 
 ---
 
-### Question 12
+### Question 13
 
 Sofia is building a sign-up window for her local gym using PySide6. The window needs:
 
@@ -335,7 +362,7 @@ Which widgets best match items 1 to 4, in order?
 
 ---
 
-### Question 13
+### Question 14
 
 Alice is building a suburb search tool for a real estate agency. She writes the following code to lay out the main window, where `window` is a `QWidget`:
 
@@ -429,7 +456,7 @@ Which sketch best shows the resulting window?
 
 ---
 
-### Question 14
+### Question 15
 
 Bob adds a button to his first Qt program and wants a message to be printed every time the button is clicked. He writes:
 
@@ -455,7 +482,7 @@ What happens when the last line runs?
 
 ---
 
-### Question 15
+### Question 16
 
 Charlie runs a small online bakery where every cupcake costs $2, and writes a GUI to calculate the cost of an order. A customer types `4` into `quantity_input` (a `QLineEdit`) and clicks the button connected to this function:
 
@@ -481,7 +508,7 @@ What does `result_label` display?
 
 ---
 
-### Question 16
+### Question 17
 
 Priya is writing a script to pick out QUT student IDs from a long file of emails. A QUT student ID is the lowercase letter `n` followed by exactly eight digits, for example `n12345678`, and must appear as a complete token, not embedded in other characters.
 
@@ -499,7 +526,7 @@ Which regex pattern should Priya use?
 
 ---
 
-### Question 17
+### Question 18
 
 Minh is given a note describing where a meeting will be held, and wants to pull out every number in it. He writes:
 
@@ -523,7 +550,7 @@ What is printed when this code runs?
 
 ---
 
-### Question 18 (multiple answer)
+### Question 19 (multiple answer)
 
 Sofia manages a warehouse where every product code must be exactly two uppercase letters followed by exactly three digits. She checks each code that staff type in using `re.fullmatch(pattern, text)` with the pattern below:
 
@@ -547,7 +574,7 @@ For which of the following values of `text` does `re.fullmatch` return a match? 
 
 ---
 
-### Question 19\* (multiple answer)
+### Question 20\* (multiple answer)
 
 Alice's lecturer sets the class a challenge: print the numbers 1 to 5 in ascending order, one per line, **without using any loop**. Alice and her classmates submit the five programs below, all using a recursive function. Which of them meet the challenge? Select all that apply.
 
@@ -634,7 +661,7 @@ count_up(1)
 
 ---
 
-### Question 20
+### Question 21
 
 Before submitting his assignment, Bob's tutor asks him to tidy up his code so that it follows the IFB104 Code Presentation Guide. His classmates each suggest a different way of converting minutes into seconds. Which suggestion best follows the guide?
 
@@ -696,7 +723,7 @@ totSecs = mins * 60 # calc secs
 
 ---
 
-### Question 21\*
+### Question 22\*
 
 Charlie is studying the Fibonacci sequence `0, 1, 1, 2, 3, 5, 8, 13, ...`, in which each term is the sum of the two terms before it. He stores each term in a list so that every new term can be built from the two before it. His function is meant to return term `n`, counting from 0, so `fibonacci(6)` should return `8`:
 
@@ -734,13 +761,14 @@ What happens when this code runs, and what is the best fix?
 
 | Q | Answer | Q | Answer | Q | Answer |
 |:-:|:------:|:-:|:------:|:-:|:------:|
-| 1 | C | 8 | A | 15 | E |
-| 2 | B, D | 9 | D | 16 | C |
-| 3 | C | 10 | B | 17 | D |
-| 4 | D | 11 | C | 18 | A, D |
-| 5 | B | 12 | D | 19 | A, D |
-| 6 | C | 13 | A | 20 | B |
-| 7 | E | 14 | B | 21 | C |
+| 1 | C | 9 | D | 17 | C |
+| 2 | B, D | 10 | D | 18 | D |
+| 3 | C | 11 | B | 19 | A, D |
+| 4 | D | 12 | C | 20 | A, D |
+| 5 | B | 13 | D | 21 | B |
+| 6 | C | 14 | A | 22 | C |
+| 7 | E | 15 | B |  |  |
+| 8 | A | 16 | E |  |  |
 
 ---
 
@@ -852,7 +880,24 @@ for candidate in range(1, number + 1):
 
 With this change, `count_divisors(6)` returns `4` (for 1, 2, 3 and 6).
 
-### Q9: **D**
+### Q9: **D** `3`, `4`, `-4`
+
+`//` is **floor division**: it divides, then rounds **down** to the nearest whole number. It never rounds to the *nearest* number.
+
+| Expression | Exact value | Result | Why |
+|---|---|---|---|
+| `19 // 5` | 3.8 | `3` | rounded **down**, not up to 4 |
+| `19 % 5` | n/a | `4` | the remainder: `5 * 3 + 4 = 19` |
+| `-17 // 5` | -3.4 | `-4` | "down" means towards **negative infinity**, so -3.4 goes to -4, not -3 |
+
+- **A** is what you'd get by chopping off the decimal part, which is what `int(-17 / 5)` does (`-3`).
+- **B** is what you'd get by rounding to the nearest whole number.
+- **C** uses `/`, which always gives a `float`, even for `20 / 5` (`4.0`).
+
+> [!NOTE]
+> Python's `round()` rounds halves to the nearest **even** number, so `round(2.5)` is `2` but `round(3.5)` is `4`.
+
+### Q10: **D**
 
 | Line | Error | Why |
 |---|---|---|
@@ -864,7 +909,7 @@ With this change, `count_divisors(6)` returns `4` (for 1, 2, 3 and 6).
 > [!TIP]
 > **TypeError** = wrong *kind* of thing. **ValueError** = right kind, bad *content*.
 
-### Q10: **B** `['Ana', 'Dee']`
+### Q11: **B** `['Ana', 'Dee']`
 
 | Student | Exam >= 50 | Assignment >= 50 | Passed? |
 |---|---|---|---|
@@ -875,14 +920,14 @@ With this change, `count_divisors(6)` returns `4` (for 1, 2, 3 and 6).
 
 Only `student[NAME]` is appended, so the list holds names, not whole records (option E). Option A forgets that `and` needs both conditions, and option C treats `>=` as `>`.
 
-### Q11: **C**
+### Q12: **C**
 
 The typo `totl` is a perfectly valid *name*, so there is **no SyntaxError**. Python only looks a name up when that line **runs**. `Start` prints first, then calling `total_price` reaches `return totl` and raises `NameError: name 'totl' is not defined`.
 
 > [!IMPORTANT]
 > **SyntaxError**: caught *before* anything runs (e.g. missing `:`). **NameError / TypeError / IndexError / ...**: raised *while* running, only on the line that triggers them.
 
-### Q12: **D**
+### Q13: **D**
 
 | Need | Widget | Why |
 |---|---|---|
@@ -893,7 +938,7 @@ The typo `totl` is a perfectly valid *name*, so there is **no SyntaxError**. Pyt
 
 Option **B** swaps checkbox and radio button: the classic trap. (A `QComboBox` also picks one option, but it **hides** the list until opened.)
 
-### Q13: **A**
+### Q14: **A**
 
 - `QVBoxLayout` stacks items **top to bottom** in the order they're added.
 - The first item added is the `search_row` (a `QHBoxLayout`), which places `Suburb:` and the combo box **side by side**.
@@ -901,7 +946,7 @@ Option **B** swaps checkbox and radio button: the classic trap. (A `QComboBox` a
 
 **C** would be the result if the label and combo box were added straight to `main_layout`. **D** gets the order wrong.
 
-### Q14: **B**
+### Q15: **B**
 
 `show_message()` **with parentheses calls the function right now**. It prints once and returns `None`, so the line becomes `button.clicked.connect(None)`, and PySide6 raises `TypeError: Expected signal or callable, got "NoneType"`.
 
@@ -912,7 +957,7 @@ button.clicked.connect(show_message)   # correct: pass the function itself, no (
 > [!WARNING]
 > This is one of the most common Qt mistakes. If the slot needs arguments, use a `lambda`: `button.clicked.connect(lambda: show_message('Hi'))`.
 
-### Q15: **E** `Total: 44`
+### Q16: **E** `Total: 44`
 
 `QLineEdit.text()` **always returns a string**. `'4' * 2` is **string repetition**, giving `'44'`. No error is raised, so the bug is silent. Convert first:
 
@@ -923,7 +968,7 @@ quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad 
 > [!NOTE]
 > If the price were `2.5`, `'4' * 2.5` *would* raise a `TypeError`. The bug is only silent because `2` is an integer.
 
-### Q16: **C** `\bn\d{8}\b`
+### Q17: **C** `\bn\d{8}\b`
 
 - **A** `n\d+`: any number of digits, so it accepts `n1`, and it also matches inside words.
 - **B** is missing the closing `\b`, so `n123456789` matches its first 8 digits.
@@ -931,11 +976,11 @@ quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad 
 - **D** has only 7 digits.
 - **E** uses uppercase `N`. Regex is case-sensitive by default.
 
-### Q17: **D** `['12', '3', '2026']`
+### Q18: **D** `['12', '3', '2026']`
 
 `findall` returns a **list of strings** (never ints, so A is wrong). `\d+` is greedy and takes the **longest run** of digits each time, so `12` stays together (B would be `\d` without the `+`).
 
-### Q18: **A, D**
+### Q19: **A, D**
 
 `fullmatch` requires the **whole string** to match: exactly 2 uppercase letters, then exactly 3 digits.
 
@@ -948,7 +993,7 @@ quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad 
 > [!TIP]
 > Use `fullmatch` (or `^...$`) to **validate** input, and `search` / `findall` to **find** things inside longer text.
 
-### Q19: **A, D**
+### Q20: **A, D**
 
 - **A** (correct) prints *before* recursing: 1, 2, 3, 4, 5. The base case stops at 6.
 - **B** (wrong) prints *after* recursing, so the output **unwinds backwards**: 5, 4, 3, 2, 1.
@@ -969,7 +1014,7 @@ flowchart LR
 > [!IMPORTANT]
 > Every recursive function needs: (1) a **base case** that stops, and (2) a recursive call that **moves toward** it.
 
-### Q20: **B**
+### Q21: **B**
 
 B uses a **named constant** instead of a magic number, has meaningful names and has spaces around operators.
 
@@ -978,7 +1023,7 @@ B uses a **named constant** instead of a magic number, has meaningful names and 
 - **D**: the name isn't a descriptive verb, the parameter name is a single letter, `60` is a magic number, and it's crammed onto one line.
 - **E**: abbreviations (`totSecs`, `calc`), which the guide says to avoid.
 
-### Q21: **C**
+### Q22: **C**
 
 `fibo = [0] * 6` has indices `0..5`, but the loop goes up to `index = 6` (and the function returns `fibo[6]`), so `fibo[6] = ...` raises `IndexError`. To store terms 0 to `n` you need **`n + 1`** slots:
 

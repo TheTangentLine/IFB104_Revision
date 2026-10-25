@@ -9,7 +9,7 @@ A practice quiz and short revision notes for **IFB104 Building IT Systems**, wri
 
 | File | What it is |
 |---|---|
-| [IFB104_Practice_Quiz.pdf](IFB104_Practice_Quiz.pdf) | 21 multiple-choice questions, **no answers**, ready to print |
+| [IFB104_Practice_Quiz.pdf](IFB104_Practice_Quiz.pdf) | 22 multiple-choice questions, **no answers**, ready to print |
 | [mcq.md](mcq.md) | The same questions, followed by an answer key and a worked explanation for every question |
 | [revision.md](revision.md) | Quick revision of regex building blocks and PySide6/Qt components, with diagrams |
 | [common_pattern_regex.md](common_pattern_regex.md) | Ready-to-use regex patterns (email, phone, dates, student IDs, ...) |
@@ -25,10 +25,10 @@ A practice quiz and short revision notes for **IFB104 Building IT Systems**, wri
 5. **Check your answers** by running the code. Only do this once you've marked the quiz, so it doesn't spoil the practice.
 
 > [!TIP]
-> For "what is printed?" questions, trace the code by hand in a small table with one column per variable. It's slower than guessing, but it's how you catch the trick in questions like 1, 7 and 10.
+> For "what is printed?" questions, trace the code by hand in a small table with one column per variable. It's slower than guessing, but it's how you catch the trick in questions like 1, 7, 9 and 11.
 
 > [!NOTE]
-> Questions marked with **\*** (19 and 21) are advanced. Questions marked **(multiple answer)** can have more than one correct option, and you must select all of them.
+> Questions marked with **\*** (20 and 22) are advanced. Questions marked **(multiple answer)** can have more than one correct option, and you must select all of them.
 
 ## Topics covered
 
@@ -36,20 +36,21 @@ A practice quiz and short revision notes for **IFB104 Building IT Systems**, wri
 |---|---|
 | Selection (`if` / `elif` / `else`, Boolean operators) | 1, 2 |
 | Functions, return values, values vs references | 3, 4, 5 |
-| Indexing, slicing and loops | 6, 7, 10 |
-| Errors and exceptions (`IndexError`, `ZeroDivisionError`, `NameError`, ...) | 7, 8, 9, 11 |
-| PySide6/Qt widgets, layouts, signals and slots | 12, 13, 14, 15 |
-| Regular expressions | 16, 17, 18 |
-| Code presentation | 20 |
-| Recursion \* | 19 |
-| Lists as arrays (Fibonacci) \* | 21 |
+| Indexing, slicing and loops | 6, 7, 11 |
+| Arithmetic (`//`, `%`, `/`) | 9 |
+| Errors and exceptions (`IndexError`, `ZeroDivisionError`, `NameError`, ...) | 7, 8, 10, 12 |
+| PySide6/Qt widgets, layouts, signals and slots | 13, 14, 15, 16 |
+| Regular expressions | 17, 18, 19 |
+| Code presentation | 21 |
+| Recursion \* | 20 |
+| Lists as arrays (Fibonacci) \* | 22 |
 
 ## Viewing the files
 
 The markdown files look best on GitHub or in VS Code's markdown preview.
 
 > [!TIP]
-> The diagrams in [revision.md](revision.md) and the Q19 solution are written in [Mermaid](https://mermaid.js.org/). GitHub draws them automatically. In VS Code, install the *Markdown Preview Mermaid Support* extension.
+> The diagrams in [revision.md](revision.md) and the Q20 solution are written in [Mermaid](https://mermaid.js.org/). GitHub draws them automatically. In VS Code, install the *Markdown Preview Mermaid Support* extension.
 
 ## Rebuilding the PDF
 
