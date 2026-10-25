@@ -4,7 +4,7 @@
 
 ### Question 1
 
-Selection statements allow a program to choose between alternative actions depending on the value of a Boolean expression. A common source of bugs is confusing a sequence of separate `if` statements with a single `if`-`elif`-`else` chain, because the two behave very differently. Consider the following code, which is intended to convert a numeric score into a grade.
+Alice is helping her tutor write a program that converts a student's numeric score into a grade. Before handing it over, she tests it with a score of 90. Here is Alice's code:
 
 ```python
 score = 90
@@ -37,7 +37,7 @@ What is printed when this code runs?
 
 ### Question 2 (multiple answer)
 
-Boolean expressions can combine several conditions using the operators `and`, `or` and `not`. When these operators are mixed in a single expression without brackets, Python evaluates them in a fixed order of precedence, which may not be the order you would read them in. Consider the following function, which suggests an activity based on the weather.
+Bob is building a small weather app that suggests what to do for the day, depending on the temperature and whether it is raining. He writes the following function:
 
 ```python
 def choose_activity(temperature, raining):
@@ -65,15 +65,13 @@ Which of the following function calls return `'Swim'`? Select all that apply.
 
 ### Question 3
 
-Functions allow us to package up a piece of code and reuse it with different inputs, called arguments. When a variable is passed to a function, it is important to understand whether changes made to the parameter inside the function affect the original variable outside it. Consider the following code, which is intended to add a bonus to a student's mark.
+Charlie is a tutor who has decided to give every student a 10-mark bonus. He writes a small helper function and tests it on a mark of 50:
 
 ```python
 def add_bonus(score):
     score = score + 10
-    return score
 
-mark = 50
-add_bonus(mark)
+mark = add_bonus(50)
 print(mark)
 ```
 
@@ -87,13 +85,13 @@ What is printed when this code runs?
 
 **D.** `10`
 
-**E.** `UnboundLocalError`
+**E.** `TypeError`
 
 ---
 
 ### Question 4
 
-Unlike numbers and strings, lists are mutable, which means their contents can be changed after they have been created. When a list is passed to a function, the function's parameter refers to the same list object as the caller's variable. Consider the following two functions, which both attempt to change a shopping list.
+Priya is writing a shopping-list app. She writes one function to add an item to the basket, and another to reset the basket by replacing it with a placeholder. She then tests both functions:
 
 ```python
 def add_item(basket, item):
@@ -124,36 +122,34 @@ What is printed when this code runs?
 
 ### Question 5
 
-In Python, an assignment statement such as `a = b` does not copy a value. Instead, it makes the name `a` refer to the same object as `b`. This distinction is especially important when working with mutable objects such as lists. Consider the following code segment.
+Minh wants to find out whether a function can change a variable that is passed to it. To make the experiment as clear as possible, he gives the variable and the function's parameter the same name, `a`:
 
 ```python
-original = [1, 2, 3]
-alias = original
-copy = original[:]
+def modify(a):
+    a = a + 5
 
-alias.append(4)
-copy.append(5)
-
-print(original, copy)
+a = 5
+modify(a)
+print(a)
 ```
 
 What is printed when this code runs?
 
-**A.** `[1, 2, 3, 4] [1, 2, 3, 5]`
+**A.** `10`
 
-**B.** `[1, 2, 3, 4, 5] [1, 2, 3, 4, 5]`
+**B.** `5`
 
-**C.** `[1, 2, 3] [1, 2, 3, 5]`
+**C.** `None`
 
-**D.** `[1, 2, 3, 4] [1, 2, 3, 4, 5]`
+**D.** `UnboundLocalError`
 
-**E.** `[1, 2, 3, 4, 5] [1, 2, 3, 5]`
+**E.** `NameError`
 
 ---
 
 ### Question 6
 
-Strings and lists are both sequences, so their elements can be accessed by position using indexing and slicing. Index positions start at zero, and Python also allows negative indices, which count backwards from the end of the sequence. Consider the following code, where variable `city` holds the name of a city.
+Sofia is designing name tags for a conference in Brisbane. She wants to print two short codes taken from different parts of the city's name, so she writes:
 
 ```python
 city = 'BRISBANE'
@@ -176,7 +172,7 @@ What is printed when this code runs?
 
 ### Question 7
 
-Loops are frequently used to process each element of a list in turn. One way of doing so is to loop over the index positions of the list and use each position to access an element. When using this approach, the range of positions produced by the loop must exactly match the list's valid indices. Consider the following code segment, which is intended to print every number in the list on a single line.
+Alice wants to print every number in her list on a single line. Instead of looping over the list directly, she decides to loop over the index positions and use each position to look up a number:
 
 ```python
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -201,7 +197,7 @@ What is the result of running this code?
 
 ### Question 8
 
-A divisor of a whole number is a number that divides into it exactly, with no remainder. For example, the divisors of 6 are 1, 2, 3 and 6. Python's remainder operator `%` is a convenient way of testing for divisors, because `number % candidate` equals zero exactly when `candidate` divides `number`. Consider the following function, which is intended to count how many divisors a positive whole number has.
+Bob is writing a maths helper for his younger sister. A divisor of a whole number divides into it exactly, with no remainder; for example, the divisors of 6 are 1, 2, 3 and 6. Bob reasons that `number % candidate` is zero exactly when `candidate` divides `number`, so he writes the following function to count the divisors and tests it with 6:
 
 ```python
 def count_divisors(number):
@@ -230,7 +226,7 @@ What is the result of running this code?
 
 ### Question 9
 
-When a Python program encounters a problem that it cannot handle, it raises an exception. The type of the exception tells the programmer what kind of problem occurred, which is the first step in finding and fixing a bug. Consider the following four lines of code, each of which is run on its own.
+Charlie is marking a first-year student's work and finds four lines of code that each crash the program. He runs each line on its own to see which exception it raises:
 
 ```python
 '3' + 4                 # Line 1
@@ -255,7 +251,7 @@ Which exception does each line raise, in order from Line 1 to Line 4?
 
 ### Question 10
 
-In Assignment 1 you processed data stored as a list of lists, where each inner list represents one record and named constants are used to identify the position of each field. Consider the following code, which processes the results for a small group of students. A student passes only if they score at least 50 in both the exam and the assignment.
+Priya is a tutor who keeps her class's results in a list of lists, just like the data in Assignment 1. A student passes only if they score at least 50 in both the exam and the assignment. She writes the following code to list everyone who passed:
 
 ```python
 results = [['Ana', 72, 85],
@@ -288,7 +284,7 @@ What is printed when this code runs?
 
 ### Question 11
 
-Errors in Python programs fall into two broad groups: those that Python detects before the program starts running, and those that only appear while the program is running. Knowing which group an error belongs to helps explain why some output may appear before a program fails. Consider the following program, which contains a small typing mistake.
+Minh writes a function to add up the prices in a shopping cart, but makes a small typing mistake on the last line of the function without noticing. He then runs his program:
 
 ```python
 def total_price(prices):
@@ -318,7 +314,7 @@ What happens when this program runs?
 
 ### Question 12
 
-Graphical user interfaces are built from widgets, and PySide6 provides a different widget for each kind of user interaction. Choosing the right widget makes an interface easier to use and the code behind it simpler to write. Suppose you are building a sign-up window that needs:
+Sofia is building a sign-up window for her local gym using PySide6. The window needs:
 
 1. a box to type the user's name (one line),
 2. an on/off option to subscribe to the newsletter,
@@ -341,7 +337,7 @@ Which widgets best match items 1 to 4, in order?
 
 ### Question 13
 
-Rather than placing widgets at fixed screen coordinates, Qt programs use layout managers to arrange widgets automatically. A `QVBoxLayout` arranges its contents vertically and a `QHBoxLayout` arranges them horizontally, and layouts can be nested inside each other to build more complex windows. Consider the following code, which builds the window for a suburb search tool. Assume that `window` is a `QWidget`.
+Alice is building a suburb search tool for a real estate agency. She writes the following code to lay out the main window, where `window` is a `QWidget`:
 
 ```python
 main_layout = QVBoxLayout()
@@ -359,54 +355,83 @@ window.setLayout(main_layout)
 
 Which sketch best shows the resulting window?
 
-**A.**
+<table>
+<tr>
+<td valign="top">
+
+<b>A.</b>
+
 ```text
-+-----------------------------+
-| Suburb:  [ combo box   v ]  |
-| [         Search          ] |
-| Results                     |
-+-----------------------------+
++------------------------------------+
+| Suburb:  [ combo box        v ]    |
+| [            Search            ]   |
+| Results                            |
++------------------------------------+
 ```
 
-**B.**
+</td>
+<td valign="top">
+
+<b>B.</b>
+
 ```text
-+------------------------------------------------+
-| Suburb: [ combo v ] [ Search ] Results         |
-+------------------------------------------------+
++------------------------------------+
+| Suburb: [combo v] [Search] Results |
++------------------------------------+
 ```
 
-**C.**
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<b>C.</b>
+
 ```text
-+-----------------------------+
-| Suburb:                     |
-| [ combo box            v ]  |
-| [         Search          ] |
-| Results                     |
-+-----------------------------+
++------------------------------------+
+| Suburb:                            |
+| [ combo box                  v ]   |
+| [            Search            ]   |
+| Results                            |
++------------------------------------+
 ```
 
-**D.**
+</td>
+<td valign="top">
+
+<b>D.</b>
+
 ```text
-+-----------------------------+
-| [         Search          ] |
-| Results                     |
-| Suburb:  [ combo box   v ]  |
-+-----------------------------+
++------------------------------------+
+| [            Search            ]   |
+| Results                            |
+| Suburb:  [ combo box        v ]    |
++------------------------------------+
 ```
 
-**E.**
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<b>E.</b>
+
 ```text
-+-----------------------------+
-| Suburb:      | [ Search ]   |
-| [ combo v ]  | Results      |
-+-----------------------------+
++------------------------------------+
+| Suburb:         | [ Search ]       |
+| [ combo   v ]   | Results          |
++------------------------------------+
 ```
+
+</td>
+</tr>
+</table>
 
 ---
 
 ### Question 14
 
-GUI programs are event-driven: rather than running from top to bottom and finishing, they wait for the user to do something and then respond. In Qt this is achieved by connecting a widget's signal, such as a button's `clicked` signal, to a function known as a slot, which Qt calls whenever the signal is emitted. Consider the following code.
+Bob adds a button to his first Qt program and wants a message to be printed every time the button is clicked. He writes:
 
 ```python
 def show_message():
@@ -432,7 +457,7 @@ What happens when the last line runs?
 
 ### Question 15
 
-Data entered by the user into a GUI usually needs to be converted to an appropriate type before it can be used in calculations. Forgetting to do so does not always cause an error, which can make the resulting bug hard to notice. Consider the following slot function from a simple shop program. The user types `4` into `quantity_input` (a `QLineEdit`) and clicks a button connected to this function.
+Charlie runs a small online bakery where every cupcake costs $2, and writes a GUI to calculate the cost of an order. A customer types `4` into `quantity_input` (a `QLineEdit`) and clicks the button connected to this function:
 
 ```python
 def show_total():
@@ -458,9 +483,9 @@ What does `result_label` display?
 
 ### Question 16
 
-Regular expressions describe patterns of text and are commonly used to find or validate structured tokens such as identification numbers, dates and phone numbers. Consider the following scenario. A QUT student ID consists of the lowercase letter `n` followed by exactly eight digits, for example `n12345678`, and must appear as a complete token, not embedded in other characters.
+Priya is writing a script to pick out QUT student IDs from a long file of emails. A QUT student ID is the lowercase letter `n` followed by exactly eight digits, for example `n12345678`, and must appear as a complete token, not embedded in other characters.
 
-Which of the following regex patterns correctly matches a QUT student ID?
+Which regex pattern should Priya use?
 
 **A.** `n\d+`
 
@@ -476,7 +501,7 @@ Which of the following regex patterns correctly matches a QUT student ID?
 
 ### Question 17
 
-Python's `re` module provides several functions for working with regular expressions. The `findall` function searches a whole string for every non-overlapping match of a pattern and returns all of the matches together. Consider the following code.
+Minh is given a note describing where a meeting will be held, and wants to pull out every number in it. He writes:
 
 ```python
 import re
@@ -500,7 +525,7 @@ What is printed when this code runs?
 
 ### Question 18 (multiple answer)
 
-When validating user input, it is important that the entire input matches the expected format, not just part of it. Suppose a product code must consist of exactly two uppercase letters followed by exactly three digits, and is checked using the pattern below with `re.fullmatch(pattern, text)`.
+Sofia manages a warehouse where every product code must be exactly two uppercase letters followed by exactly three digits. She checks each code that staff type in using `re.fullmatch(pattern, text)` with the pattern below:
 
 ```python
 import re
@@ -524,9 +549,14 @@ For which of the following values of `text` does `re.fullmatch` return a match? 
 
 ### Question 19\* (multiple answer)
 
-A recursive function is a function that calls itself. Recursion can be used instead of a loop to repeat an action, provided that the function has a base case that eventually stops the repetition. Where the `print` statement is placed relative to the recursive call also affects the order of the output. Without using any loop, which of the following programs print the numbers 1 to 5 in ascending order, one per line? Select all that apply.
+Alice's lecturer sets the class a challenge: print the numbers 1 to 5 in ascending order, one per line, **without using any loop**. Alice and her classmates submit the five programs below, all using a recursive function. Which of them meet the challenge? Select all that apply.
 
-**A.**
+<table>
+<tr>
+<td valign="top">
+
+<b>A.</b>
+
 ```python
 def count_up(number):
     if number > 5:
@@ -537,7 +567,11 @@ def count_up(number):
 count_up(1)
 ```
 
-**B.**
+</td>
+<td valign="top">
+
+<b>B.</b>
+
 ```python
 def count_up(number):
     if number > 5:
@@ -548,7 +582,13 @@ def count_up(number):
 count_up(1)
 ```
 
-**C.**
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<b>C.</b>
+
 ```python
 def count_up(number):
     print(number)
@@ -557,7 +597,11 @@ def count_up(number):
 count_up(1)
 ```
 
-**D.**
+</td>
+<td valign="top">
+
+<b>D.</b>
+
 ```python
 def count_up(number):
     if number == 0:
@@ -568,7 +612,13 @@ def count_up(number):
 count_up(5)
 ```
 
-**E.**
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<b>E.</b>
+
 ```python
 def count_up(number):
     if number < 5:
@@ -578,44 +628,77 @@ def count_up(number):
 count_up(1)
 ```
 
+</td>
+</tr>
+</table>
+
 ---
 
 ### Question 20
 
-The IFB104 Code Presentation Guide was provided to improve the quality of your code on the two major assignments. It covers layout, the choice of identifier names, commenting and the avoidance of magic numbers. Each of the following code snippets converts a number of minutes into seconds. Which one best follows the guide?
+Before submitting his assignment, Bob's tutor asks him to tidy up his code so that it follows the IFB104 Code Presentation Guide. His classmates each suggest a different way of converting minutes into seconds. Which suggestion best follows the guide?
 
-**A.**
+<table>
+<tr>
+<td valign="top">
+
+<b>A.</b>
+
 ```python
-for i in range(len(names)):
-    print(names[i])
+for i in range(len(minute_list)):
+    second_list.append(minute_list[i] * 60)
 ```
 
-**B.**
+</td>
+<td valign="top">
+
+<b>B.</b>
+
 ```python
 SECONDS_PER_MINUTE = 60
 total_seconds = minutes * SECONDS_PER_MINUTE
 ```
 
-**C.**
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<b>C.</b>
+
 ```python
 x = m*60 # multiply m by 60
 ```
 
-**D.**
+</td>
+<td valign="top">
+
+<b>D.</b>
+
 ```python
 def Calc(m): return m*60
 ```
 
-**E.**
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<b>E.</b>
+
 ```python
 totSecs = mins * 60 # calc secs
 ```
+
+</td>
+</tr>
+</table>
 
 ---
 
 ### Question 21\*
 
-Lists can be used to store previously calculated results so that each new value can be built from earlier ones. A classic example is the Fibonacci sequence `0, 1, 1, 2, 3, 5, 8, 13, ...`, in which each term is the sum of the two terms before it. The function below is meant to return term `n` of the sequence, counting from 0, so `fibonacci(6)` should return `8`.
+Charlie is studying the Fibonacci sequence `0, 1, 1, 2, 3, 5, 8, 13, ...`, in which each term is the sum of the two terms before it. He stores each term in a list so that every new term can be built from the two before it. His function is meant to return term `n`, counting from 0, so `fibonacci(6)` should return `8`:
 
 ```python
 def fibonacci(n):
@@ -653,9 +736,9 @@ What happens when this code runs, and what is the best fix?
 |:-:|:------:|:-:|:------:|:-:|:------:|
 | 1 | C | 8 | A | 15 | E |
 | 2 | B, D | 9 | D | 16 | C |
-| 3 | B | 10 | B | 17 | D |
+| 3 | C | 10 | B | 17 | D |
 | 4 | D | 11 | C | 18 | A, D |
-| 5 | A | 12 | D | 19 | A, D |
+| 5 | B | 12 | D | 19 | A, D |
 | 6 | C | 13 | A | 20 | B |
 | 7 | E | 14 | B | 21 | C |
 
@@ -699,21 +782,41 @@ temperature > 30 or (raining and temperature > 20)
 
 E is the boundary trap: `>` is not `>=`.
 
-### Q3: **B** `50`
+### Q3: **C** `None`
 
-Integers are **immutable**. Inside the function, `score = score + 10` makes the *local* name `score` point at a new integer `60`. The caller's `mark` still refers to `50`. The function returns `60`, but the result is **thrown away** because it is never assigned. To keep it, write `mark = add_bonus(mark)`.
+`add_bonus` calculates `60` and stores it in its local variable `score`, but it has **no `return` statement**. A function without a `return` gives back `None`, so `mark = add_bonus(50)` stores `None`. The fix is to return the result:
+
+```python
+def add_bonus(score):
+    return score + 10
+```
 
 ### Q4: **D** `['milk', 'eggs']`
 
 - `add_item` calls `.append()` on the list object, which **changes the shared list** that `shopping` also refers to.
 - `replace_basket` only **rebinds the local name** `basket` to a new list, so the caller's list is untouched.
 
+> [!TIP]
 > **Rule of thumb:** *mutating* a list (`append`, `remove`, `basket[0] = ...`) is visible to the caller. *Reassigning* the parameter (`basket = ...`) is not.
 
-### Q5: **A** `[1, 2, 3, 4] [1, 2, 3, 5]`
+### Q5: **B** `5`
 
-- `alias = original` copies the **reference**, so both names point to the same list. Appending `4` through `alias` changes `original`.
-- `copy = original[:]` makes a **new list** (a shallow copy). Appending `5` affects only `copy`.
+Using the same name does **not** link the two variables. The parameter `a` is a separate **local** variable that starts off referring to the same value, `5`.
+
+1. Inside `modify`, `a = a + 5` makes the *local* `a` refer to `10`.
+2. When the function ends, the local `a` disappears.
+3. The outer `a` was never reassigned, so it is still `5`.
+
+Integers are **immutable**, so a function can never change the caller's integer; it can only **return** a new value. To keep the change:
+
+```python
+def modify(a):
+    return a + 5
+
+a = modify(a)   # a is now 10
+```
+
+There is no `UnboundLocalError`, because `a` already has a value as a parameter when `a + 5` is calculated.
 
 ### Q6: **C** `ISB ANE`
 
@@ -758,6 +861,7 @@ With this change, `count_divisors(6)` returns `4` (for 1, 2, 3 and 6).
 | `[10, 20][2]` | `IndexError` | valid indices are only 0 and 1 |
 | `int('four')` | `ValueError` | right type (`str`), but the value can't become an int |
 
+> [!TIP]
 > **TypeError** = wrong *kind* of thing. **ValueError** = right kind, bad *content*.
 
 ### Q10: **B** `['Ana', 'Dee']`
@@ -775,6 +879,7 @@ Only `student[NAME]` is appended, so the list holds names, not whole records (op
 
 The typo `totl` is a perfectly valid *name*, so there is **no SyntaxError**. Python only looks a name up when that line **runs**. `Start` prints first, then calling `total_price` reaches `return totl` and raises `NameError: name 'totl' is not defined`.
 
+> [!IMPORTANT]
 > **SyntaxError**: caught *before* anything runs (e.g. missing `:`). **NameError / TypeError / IndexError / ...**: raised *while* running, only on the line that triggers them.
 
 ### Q12: **D**
@@ -804,6 +909,9 @@ Option **B** swaps checkbox and radio button: the classic trap. (A `QComboBox` a
 button.clicked.connect(show_message)   # correct: pass the function itself, no ()
 ```
 
+> [!WARNING]
+> This is one of the most common Qt mistakes. If the slot needs arguments, use a `lambda`: `button.clicked.connect(lambda: show_message('Hi'))`.
+
 ### Q15: **E** `Total: 44`
 
 `QLineEdit.text()` **always returns a string**. `'4' * 2` is **string repetition**, giving `'44'`. No error is raised, so the bug is silent. Convert first:
@@ -812,7 +920,8 @@ button.clicked.connect(show_message)   # correct: pass the function itself, no (
 quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad input
 ```
 
-(If the price were `2.5`, `'4' * 2.5` *would* raise a `TypeError`.)
+> [!NOTE]
+> If the price were `2.5`, `'4' * 2.5` *would* raise a `TypeError`. The bug is only silent because `2` is an integer.
 
 ### Q16: **C** `\bn\d{8}\b`
 
@@ -836,6 +945,9 @@ quantity = int(quantity_input.text())   # wrap in try/except ValueError for bad 
 - `'XY000'`: matches
 - `'A B123'`: no match, the space breaks it
 
+> [!TIP]
+> Use `fullmatch` (or `^...$`) to **validate** input, and `search` / `findall` to **find** things inside longer text.
+
 ### Q19: **A, D**
 
 - **A** (correct) prints *before* recursing: 1, 2, 3, 4, 5. The base case stops at 6.
@@ -854,13 +966,14 @@ flowchart LR
     c4 -. "print 5" .-> c5
 ```
 
+> [!IMPORTANT]
 > Every recursive function needs: (1) a **base case** that stops, and (2) a recursive call that **moves toward** it.
 
 ### Q20: **B**
 
 B uses a **named constant** instead of a magic number, has meaningful names and has spaces around operators.
 
-- **A**: unnecessary single-letter index loop (the guide says to use `for name in names:`).
+- **A**: unnecessary single-letter index loop (the guide says to loop over the list directly, e.g. `for minutes in minute_list:`), plus the magic number `60`.
 - **C**: meaningless names, no spaces around `*`, and a comment that just repeats the code.
 - **D**: the name isn't a descriptive verb, the parameter name is a single letter, `60` is a magic number, and it's crammed onto one line.
 - **E**: abbreviations (`totSecs`, `calc`), which the guide says to avoid.

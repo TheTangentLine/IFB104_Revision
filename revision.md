@@ -7,6 +7,7 @@
 
 ## Part 1: Regex Patterns
 
+> [!NOTE]
 > For ready-made patterns (email, phone, dates...) see [common_pattern_regex.md](common_pattern_regex.md). This part covers the **building blocks** you combine to make them.
 
 ### 1.1 Characters and classes
@@ -26,6 +27,7 @@
 | `[^abc]` | one character **not** in the set | `[^0-9]` | |
 | `\.` `\$` `\(` | escaped special character, matched literally | `\.com` | |
 
+> [!TIP]
 > Capital letter = opposite: `\d`/`\D`, `\w`/`\W`, `\s`/`\S`.
 
 ### 1.2 Quantifiers: *how many?*
@@ -40,6 +42,7 @@
 | `{n,m}` | between n and m | `\d{1,3}` | `7`, `42`, `255` |
 | `*?` `+?` | **lazy**: as few as possible | `<.+?>` | `<b>` rather than `<b>bold</b>` |
 
+> [!WARNING]
 > Quantifiers are **greedy** by default: they grab as much as they can.
 
 ### 1.3 Anchors and boundaries: *where?*
@@ -178,6 +181,7 @@ sequenceDiagram
     Note over Loop: waits for the next event...
 ```
 
+> [!IMPORTANT]
 > Nothing happens until `app.exec()` runs. After that your code only runs **in response to signals**.
 
 ### 2.3 Widget cheat sheet
