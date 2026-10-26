@@ -25,7 +25,7 @@ A practice quiz and short revision notes for **IFB104 Building IT Systems**, wri
 5. **Check your answers** by running the code. Only do this once you've marked the quiz, so it doesn't spoil the practice.
 
 > [!TIP]
-> For "what is printed?" questions, trace the code by hand in a small table with one column per variable. It's slower than guessing, but it's how you catch the trick in questions like 1, 7, 9 and 11.
+> For "what is printed?" questions, trace the code by hand in a small table with one column per variable. It's slower than guessing, but it's how you catch the trick in questions like 1, 7 and 9.
 
 > [!NOTE]
 > Questions marked with **\*** (19 and 21) are advanced. Questions marked **(multiple answer)** can have more than one correct option, and you must select all of them.
@@ -36,7 +36,7 @@ A practice quiz and short revision notes for **IFB104 Building IT Systems**, wri
 |---|---|
 | Selection (`if` / `elif` / `else`, Boolean operators) | 1, 2 |
 | Functions, return values, values vs references | 3, 4, 5 |
-| Indexing, slicing and loops | 6, 7, 11 |
+| Indexing and loops | 6, 7, 11 |
 | Arithmetic (`//`, `%`, `/`) | 9 |
 | Errors and exceptions (`IndexError`, `ZeroDivisionError`, `NameError`, ...) | 7, 8, 10, 12 |
 | PySide6/Qt widgets, layouts, signals and slots | 13, 14, 15 |

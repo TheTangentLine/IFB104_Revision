@@ -149,24 +149,28 @@ What is printed when this code runs?
 
 ### Question 6
 
-Sofia is designing name tags for a conference in Brisbane. She wants to print two short codes taken from different parts of the city's name, so she writes:
+Sofia is building a sign-up form for a gym, and every new password must contain at least one digit. She writes the following function to check this rule, and it seems to work when she tests it with `'1abc'`:
 
 ```python
-city = 'BRISBANE'
-print(city[2:5], city[-3:])
+def check_password(password):
+    for character in password:
+        if character.isdigit():
+            return True
+        else:
+            return False
 ```
 
-What is printed when this code runs?
+What does this function actually check?
 
-**A.** `RIS NE`
+**A.** Whether the password contains at least one digit
 
-**B.** `ISBA ANE`
+**B.** Whether every character in the password is a digit
 
-**C.** `ISB ANE`
+**C.** Whether the first character of the password is a digit
 
-**D.** `RISB ENA`
+**D.** Whether the last character of the password is a digit
 
-**E.** `ISB NAB`
+**E.** How many digits the password contains
 
 ---
 
@@ -278,7 +282,7 @@ Which exception does each line raise, in order from Line 1 to Line 4?
 
 ### Question 11
 
-Priya is a tutor who keeps her class's results in a list of lists, just like the data in Assignment 1. A student passes only if they score at least 50 in both the exam and the assignment. She writes the following code to list everyone who passed:
+Priya is a tutor who keeps her class's results in a list of lists, just like the data in Assignment 1. A student passes only if they score at least 50 in both the exam and the assignment. She wants the code below to print `['Ana', 'Dee']`, but three parts of it are missing:
 
 ```python
 results = [['Ana', 72, 85],
@@ -289,23 +293,23 @@ NAME, EXAM, ASSIGNMENT = 0, 1, 2
 
 passed = []
 for student in results:
-    if student[EXAM] >= 50 and student[ASSIGNMENT] >= 50:
-        passed.append(student[NAME])
+    if ___(1)___ >= 50 and ___(2)___ >= 50:
+        passed.append(___(3)___)
 
 print(passed)
 ```
 
-What is printed when this code runs?
+How should the three blanks be filled in? Select the code snippets in the order the blanks appear.
 
-**A.** `['Ana', 'Cy', 'Dee']`
+**A.** `EXAM`, `ASSIGNMENT`, `NAME`
 
-**B.** `['Ana', 'Dee']`
+**B.** `student[EXAM]`, `student[ASSIGNMENT]`, `student[NAME]`
 
-**C.** `['Ana']`
+**C.** `results[EXAM]`, `results[ASSIGNMENT]`, `results[NAME]`
 
-**D.** `['Ben', 'Cy']`
+**D.** `student[1]`, `student[2]`, `student`
 
-**E.** `[['Ana', 72, 85], ['Dee', 50, 50]]`
+**E.** `student[NAME]`, `student[EXAM]`, `student[ASSIGNMENT]`
 
 ---
 
@@ -484,43 +488,53 @@ What happens when the last line runs?
 
 ### Question 16
 
-Priya is writing a script to pick out QUT student IDs from a long file of emails. A QUT student ID is the lowercase letter `n` followed by exactly eight digits, for example `n12345678`, and must appear as a complete token, not embedded in other characters.
+Priya is writing a script to pick out QUT student IDs from a long file of emails. A QUT student ID is the lowercase letter `n` followed by exactly eight digits, for example `n12345678`, and must appear as a complete token, not embedded in other characters. Her pattern has two parts missing:
 
-Which regex pattern should Priya use?
+```python
+import re
 
-**A.** `n\d+`
+student_ids = re.findall(r"___(1)___n\d___(2)___\b", email_text)
+```
 
-**B.** `\bn\d{8}`
+How should the two blanks be filled in?
 
-**C.** `\bn\d{8}\b`
+**A.** `\b` and `{8}`
 
-**D.** `[n]\d{7}\b`
+**B.** `^` and `+`
 
-**E.** `\bN\d{8}\b`
+**C.** `\b` and `{1,8}`
+
+**D.** `\s` and `{8}`
+
+**E.** `\B` and `*`
 
 ---
 
 ### Question 17
 
-Minh is given a note describing where a meeting will be held, and wants to pull out every number in it. He writes:
+Minh keeps short notes of what he spends each day, such as `"Coffee 4, lunch 12, bus 3"`. He writes the following function and runs it on each note:
 
 ```python
 import re
 
-print(re.findall(r"\d+", "Room 12, level 3, 2026"))
+def mystery(note):
+    total = 0
+    for number in re.findall(r"\d+", note):
+        total = total + int(number)
+    return total
 ```
 
-What is printed when this code runs?
+What is the purpose of this function?
 
-**A.** `[12, 3, 2026]`
+**A.** It counts how many digits appear in the note
 
-**B.** `['1', '2', '3', '2', '0', '2', '6']`
+**B.** It adds up every single digit in the note, so `12` counts as `1 + 2`
 
-**C.** `'12'`
+**C.** It always raises a `TypeError`, because `findall` returns strings
 
-**D.** `['12', '3', '2026']`
+**D.** It adds up all the whole numbers in the note, so the example gives `19`
 
-**E.** `['Room 12', 'level 3', '2026']`
+**E.** It returns the largest number in the note
 
 ---
 
@@ -736,7 +750,7 @@ What happens when this code runs, and what is the best fix?
 | Q | Answer | Q | Answer | Q | Answer |
 |:-:|:------:|:-:|:------:|:-:|:------:|
 | 1 | C | 8 | A | 15 | B |
-| 2 | B, D | 9 | D | 16 | C |
+| 2 | B, D | 9 | D | 16 | A |
 | 3 | C | 10 | D | 17 | D |
 | 4 | D | 11 | B | 18 | A, D |
 | 5 | B | 12 | C | 19 | A, D |
@@ -819,15 +833,28 @@ a = modify(a)   # a is now 10
 
 There is no `UnboundLocalError`, because `a` already has a value as a parameter when `a + 5` is calculated.
 
-### Q6: **C** `ISB ANE`
+### Q6: **C**
 
-| Index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-|---|---|---|---|---|---|---|---|---|
-| Letter | B | R | **I** | **S** | **B** | A | N | E |
-| Negative | -8 | -7 | -6 | -5 | -4 | **-3** | **-2** | **-1** |
+Both `return` statements are **inside** the loop, so the function always returns while checking the **first** character, and the loop never reaches the second one.
 
-- `city[2:5]` starts at index 2 and stops **before** index 5, giving `ISB`.
-- `city[-3:]` starts 3 from the end and runs to the end, giving `ANE`.
+| Password | First character | Result |
+|---|---|---|
+| `'1abc'` | `'1'` is a digit | `True` |
+| `'abc1'` | `'a'` is not a digit | `False`, even though it contains `1` |
+| `''` | none: the loop never runs | `None` |
+
+To check **every** character, only return `False` once the loop has finished:
+
+```python
+def check_password(password):
+    for character in password:
+        if character.isdigit():
+            return True
+    return False
+```
+
+> [!TIP]
+> A `return` inside a loop ends the **whole function**, not just the current pass of the loop. Ask yourself: "Can I really decide the answer after looking at only this item?"
 
 ### Q7: **E**
 
@@ -882,7 +909,16 @@ With this change, `count_divisors(6)` returns `4` (for 1, 2, 3 and 6).
 > [!TIP]
 > **TypeError** = wrong *kind* of thing. **ValueError** = right kind, bad *content*.
 
-### Q11: **B** `['Ana', 'Dee']`
+### Q11: **B**
+
+Each `student` is **one inner list**, such as `['Ana', 72, 85]`, so you read its fields with `student[EXAM]`, `student[ASSIGNMENT]` and `student[NAME]`.
+
+- **A** compares the constants themselves (`1 >= 50`), which is never true.
+- **C** indexes the outer list, so `results[EXAM]` is Ben's whole record, not a score.
+- **D** gets the scores right using magic numbers, but appends the whole record instead of the name.
+- **E** mixes up the fields, comparing a name with 50, which raises a `TypeError`.
+
+With **B** filled in:
 
 | Student | Exam >= 50 | Assignment >= 50 | Passed? |
 |---|---|---|---|
@@ -890,8 +926,6 @@ With this change, `count_divisors(6)` returns `4` (for 1, 2, 3 and 6).
 | Ben | 45: no | 38: no | no |
 | Cy | 90: yes | 49: no | no (`and` needs both) |
 | Dee | 50: yes | 50: yes | **yes** (`>=` includes 50) |
-
-Only `student[NAME]` is appended, so the list holds names, not whole records (option E). Option A forgets that `and` needs both conditions, and option C treats `>=` as `>`.
 
 ### Q12: **C**
 
@@ -930,17 +964,25 @@ button.clicked.connect(show_message)   # correct: pass the function itself, no (
 > [!WARNING]
 > This is one of the most common Qt mistakes. If the slot needs arguments, use a `lambda`: `button.clicked.connect(lambda: show_message('Hi'))`.
 
-### Q16: **C** `\bn\d{8}\b`
+### Q16: **A** `\b` and `{8}`
 
-- **A** `n\d+`: any number of digits, so it accepts `n1`, and it also matches inside words.
-- **B** is missing the closing `\b`, so `n123456789` matches its first 8 digits.
-- **C** (correct): lowercase `n`, exactly 8 digits, a word boundary on each side.
-- **D** has only 7 digits.
-- **E** uses uppercase `N`. Regex is case-sensitive by default.
+The finished pattern is `\bn\d{8}\b`: a word boundary, lowercase `n`, exactly 8 digits, then another word boundary.
 
-### Q17: **D** `['12', '3', '2026']`
+- **B** `^` only matches at the very start of the text, so it finds at most one ID, and `+` allows any number of digits.
+- **C** `{1,8}` accepts IDs that are too short, such as `n123`.
+- **D** `\s` needs a space before the `n`, so it misses an ID at the start of the text, and the space ends up inside the match (`' n12345678'`).
+- **E** `\B` means "**not** a word boundary", so it finds IDs embedded in other words, such as `xn11112222`.
 
-`findall` returns a **list of strings** (never ints, so A is wrong). `\d+` is greedy and takes the **longest run** of digits each time, so `12` stays together (B would be `\d` without the `+`).
+### Q17: **D**
+
+`re.findall(r"\d+", note)` returns every run of digits as a **list of strings**: `['4', '12', '3']`. The loop converts each one with `int()` and adds it to `total`, giving `4 + 12 + 3 = 19`.
+
+- **A** would need a counter, not `total + int(number)`.
+- **B** is what happens with `\d` (no `+`), which matches one digit at a time: `4 + 1 + 2 + 3 = 10`.
+- **C** is avoided because each string is converted with `int()` before it's added.
+
+> [!NOTE]
+> `\d+` only matches whole numbers, so a price like `12.50` would be counted as `12 + 50`.
 
 ### Q18: **A, D**
 
